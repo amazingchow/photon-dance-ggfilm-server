@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block tilte %}
+PET FILM LIST
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	<!-- 顶部导航栏开始 -->
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<nav class="navbar navbar-inverse" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ggfilm-navbar-collapse">
+						 <span class="sr-only">Toggle navigation</span>
+						 <span class="icon-bar"></span>
+						 <span class="icon-bar"></span>
+						 <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Fotolei</a>
+				</div>
+				<div class="collapse navbar-collapse" id="ggfilm-navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="http://10.152.205.55:8000/labbox/petfilmlist">PET片基胶片</a></li>
+						<li class="active"><a href="http://10.152.205.55:8000/labbox/labboxguide">Lab-Box视频教程</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<!-- 顶部导航栏结束 -->
+
+	<div class="page-header">
+		<h1>
+			PET片基胶片 <small>注意事项</small>
+		</h1>
+	</div>
+	<p class="text-warning">
+		PET片基的120胶片不可用于LAB-BOX冲洗罐，PET片基的135可用于LAB-BOX冲洗罐（牵引夹固定时需稍稍用力按压）。
+	</p>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							编号
+						</th>
+						<th>
+							胶片型号
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="info">
+						<td>
+							1
+						</td>
+						<td>
+							JCH 400
+						</td>
+
+					</tr>
+					<tr>
+						<td>
+							2
+						</td>
+						<td>
+							Rollei Infrared
+						</td>
+					</tr>
+					<tr class="info">
+						<td>
+							3
+						</td>
+						<td>
+							Rollei 80s
+						</td>
+					</tr>
+					<tr>
+						<td>
+							4
+						</td>
+						<td>
+							Rollei Superpan 200
+						</td>
+					</tr>
+					<tr class="info">
+						<td>
+							5
+						</td>
+						<td>
+							Rollei 400s
+						</td>
+					</tr>
+					<tr>
+						<td>
+							6
+						</td>
+						<td>
+							Fomapan 100
+						</td>
+					</tr>
+					<tr class="info">
+						<td>
+							7
+						</td>
+						<td>
+							Fomapan 200
+						</td>
+					</tr>
+					<tr>
+						<td>
+							8
+						</td>
+						<td>
+							Fomapan 400
+						</td>
+					</tr>
+					<tr class="info">
+						<td>
+							9
+						</td>
+						<td>
+							Bergger 400 120
+						</td>
+					</tr>
+					<tr>
+						<td>
+							10
+						</td>
+						<td>
+							CatLABS X FILM ISO 80 120
+						</td>
+					</tr>
+					<tr class="info">
+						<td>
+							11
+						</td>
+						<td>
+							Arista film
+						</td>
+					</tr>
+					<tr>
+						<td>
+							12
+						</td>
+						<td>
+							Astrum film
+						</td>
+					</tr>
+					<tr class="info">
+						<td>
+							13
+						</td>
+						<td>
+							Lomography Earl Grey B&W 100
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<!-- 图片轮播开始 -->
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="carousel slide" id="carousel-435836">
+				<ol class="carousel-indicators">
+					<li class="active" data-slide-to="0" data-target="#carousel-435836"></li>
+					<li data-slide-to="1" data-target="#carousel-435836"></li>
+					<li data-slide-to="2" data-target="#carousel-435836"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default.jpg' %}" />
+						<div class="carousel-caption">
+							<h4>Lab-Box 明室冲洗系统</h4>
+							<p>无需暗房/暗袋，胶卷冲洗如此简单</p>
+						</div>
+					</div>
+					<div class="item">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default1.jpg' %}" />
+						<div class="carousel-caption">
+							<h4>Lab-Box 明室冲洗系统</h4>
+							<p>无需暗房/暗袋，胶卷冲洗如此简单</p>
+						</div>
+					</div>
+					<div class="item">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default2.jpg' %}" />
+						<div class="carousel-caption">
+							<h4>ADOX黑白冲洗系列药水</h4>
+							<p>德国原装进口，品质信赖</p>
+						</div>
+					</div>
+				</div>
+				<a class="left carousel-control" href="#carousel-435836" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+				<a class="right carousel-control" href="#carousel-435836" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+			</div>
+		</div>
+	</div>
+	<!-- 图片轮播结束 -->
+
+	<hr />
+
+	<!-- 底部版权栏开始 -->
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<p class="text-center">
+				© 2020 <strong>Fotolei.</strong> All Rights Reserved. Privacy Policy.
+				<br />
+				Email: info@fotolei.com&nbsp;&nbsp;&nbsp;&nbsp;Tel: <u>0523-81167008</u>
+			</p>
+		</div>
+	</div>
+	<!-- 底部版权栏结束 -->
+</div>
+{% endblock %}
+
+{% block script_files %}
+{% endblock %}
+
+{% block script %}
+{% endblock %}

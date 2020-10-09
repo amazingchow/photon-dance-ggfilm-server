@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block tilte %}
+PET FILM LIST
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	<!-- 顶部导航栏开始 -->
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<nav class="navbar navbar-inverse" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ggfilm-navbar-collapse">
+						 <span class="sr-only">Toggle navigation</span>
+						 <span class="icon-bar"></span>
+						 <span class="icon-bar"></span>
+						 <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Fotolei</a>
+				</div>
+				<div class="collapse navbar-collapse" id="ggfilm-navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="http://10.152.205.55:8000/labbox/petfilmlist">PET片基胶片</a></li>
+						<li class="active"><a href="http://10.152.205.55:8000/labbox/labboxguide">Lab-Box视频教程</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<!-- 顶部导航栏结束 -->
+
+	<!-- 3x缩略图开始 1-3 -->
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail text-right">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default3.jpg' %}" />
+						<div class="caption">
+							<h3>视频教程</h3>
+							<p>120胶片装卷</p>
+							<p><a class="btn btn-success" href="http://10.152.205.55:8000/labbox/tutorials-120loading">观看</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail text-right">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default3.jpg' %}" />
+						<div class="caption">
+							<h3>视频教程</h3>
+							<p>135胶卷装卷</p>
+							<p><a class="btn btn-success" href="http://10.152.205.55:8000/labbox/tutorials-135loading">观看</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail text-right">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default3.jpg' %}" />
+						<div class="caption">
+							<h3>视频教程</h3>
+							<p>切换模块操作演示</p>
+							<p><a class="btn btn-success" href="http://10.152.205.55:8000/labbox/tutorials-changingmodules">观看</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 3x缩略图结束 -->
+
+	<!-- 3x缩略图开始 4-6 -->
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail text-right">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default3.jpg' %}" />
+						<div class="caption">
+							<h3>视频教程</h3>
+							<p>胶片引导板安装注意事项</p>
+							<p><a class="btn btn-success" href="http://10.152.205.55:8000/labbox/tutorials-filmguide">观看</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail text-right">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default3.jpg' %}" />
+						<div class="caption">
+							<h3>视频教程</h3>
+							<p>120片芯组装视频</p>
+							<p><a class="btn btn-success" href="http://10.152.205.55:8000/labbox/tutorials-hubreels120">观看</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail text-right">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default3.jpg' %}" />
+						<div class="caption">
+							<h3>视频教程</h3>
+							<p>135片芯组装视频</p>
+							<p><a class="btn btn-success" href="http://10.152.205.55:8000/labbox/tutorials-hubreels135">观看</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 3x缩略图结束 -->
+
+	<!-- 3x缩略图开始 7-9 -->
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail text-right">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default3.jpg' %}" />
+						<div class="caption">
+							<h3>视频教程</h3>
+							<p>旋钮/滚冲把手安装拆卸</p>
+							<p><a class="btn btn-success" href="http://10.152.205.55:8000/labbox/tutorials-knob">观看</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail text-right">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default3.jpg' %}" />
+						<div class="caption">
+							<h3>视频教程</h3>
+							<p>120模块简介</p>
+							<p><a class="btn btn-success" href="http://10.152.205.55:8000/labbox/tutorials-module120">观看</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail text-right">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default3.jpg' %}" />
+						<div class="caption">
+							<h3>视频教程</h3>
+							<p>135模块简介</p>
+							<p><a class="btn btn-success" href="http://10.152.205.55:8000/labbox/tutorials-module135">观看</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 3x缩略图结束 -->
+
+	<!-- 3x缩略图开始 10-12 -->
+	<div class="row clearfix">	
+		<div class="col-md-12 column">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail text-right">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default3.jpg' %}" />
+						<div class="caption">
+							<h3>视频教程</h3>
+							<p>冲洗药液倒入倒出</p>
+							<p><a class="btn btn-success" href="http://10.152.205.55:8000/labbox/tutorials-pouringemptying">观看</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 3x缩略图结束 -->
+
+	<!-- 图片轮播开始 -->
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="carousel slide" id="carousel-435836">
+				<ol class="carousel-indicators">
+					<li class="active" data-slide-to="0" data-target="#carousel-435836"></li>
+					<li data-slide-to="1" data-target="#carousel-435836"></li>
+					<li data-slide-to="2" data-target="#carousel-435836"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default.jpg' %}" />
+						<div class="carousel-caption">
+							<h4>Lab-Box 明室冲洗系统</h4>
+							<p>无需暗房/暗袋，胶卷冲洗如此简单</p>
+						</div>
+					</div>
+					<div class="item">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default1.jpg' %}" />
+						<div class="carousel-caption">
+							<h4>Lab-Box 明室冲洗系统</h4>
+							<p>无需暗房/暗袋，胶卷冲洗如此简单</p>
+						</div>
+					</div>
+					<div class="item">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default2.jpg' %}" />
+						<div class="carousel-caption">
+							<h4>ADOX黑白冲洗系列药水</h4>
+							<p>德国原装进口，品质信赖</p>
+						</div>
+					</div>
+				</div>
+				<a class="left carousel-control" href="#carousel-435836" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+				<a class="right carousel-control" href="#carousel-435836" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+			</div>
+		</div>
+	</div>
+	<!-- 图片轮播结束 -->
+
+	<hr />
+
+	<!-- 底部版权栏开始 -->
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<p class="text-center">
+				© 2020 <strong>Fotolei.</strong> All Rights Reserved. Privacy Policy.
+				<br />
+				Email: info@fotolei.com&nbsp;&nbsp;&nbsp;&nbsp;Tel: <u>0523-81167008</u>
+			</p>
+		</div>
+	</div>
+	<!-- 底部版权栏结束 -->
+</div>
+{% endblock %}
+
+{% block script_files %}
+{% endblock %}
+
+{% block script %}
+{% endblock %}

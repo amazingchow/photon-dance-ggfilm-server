@@ -19,4 +19,18 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+
+    # 静态页面服务
+    path('labbox/labboxguide', views.labbox_guide, name='labboxguide'),
+    path('labbox/petfilmlist', views.labbox_petfilmlist, name='petfilmlist'),
+    path('labbox/tutorials-120loading', views.labbox_tutorials_120loading, name='tutorials-120loading'),
+    path('labbox/tutorials-135loading', views.labbox_tutorials_135loading, name='tutorials-135loading'),
+    path('labbox/tutorials-changingmodules', views.labbox_tutorials_changingmodules, name='tutorials-changingmodules'),
+    path('labbox/tutorials-filmguide', views.labbox_tutorials_filmguide, name='tutorials-filmguide'),
+    path('labbox/tutorials-hubreels120', views.labbox_tutorials_hubreels120, name='tutorials-hubreels120'),
+    path('labbox/tutorials-hubreels135', views.labbox_tutorials_hubreels135, name='tutorials-hubreels135'),
+    path('labbox/tutorials-knob', views.labbox_tutorials_knob, name='tutorials-knob'),
+    path('labbox/tutorials-module120', views.labbox_tutorials_module120, name='tutorials-module120'),
+    path('labbox/tutorials-module135', views.labbox_tutorials_module135, name='tutorials-module135'),
+    path('labbox/tutorials-pouringemptying', views.labbox_tutorials_pouringemptying, name='tutorials-pouringemptying'),
 ]

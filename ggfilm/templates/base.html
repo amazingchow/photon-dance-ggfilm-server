@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html>
+<head>
+    <!-- 移动端适配 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <title>{% block title %}{% endblock %}</title>
+
+    {% block extracss %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.tabslet.min.js"></script>
+    <script src="/static/js/jquery.textbox-hinter.min.js"></script>
+</head>
+<body>
+{% block body %}{% endblock %}
+</body>
+{% block script_files %}{% endblock %}
+<script>
+{% block script %}{% endblock %}
+</script>
+</html>
