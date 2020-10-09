@@ -7,6 +7,9 @@ init-migrate:
 migrate:
 	@python ggfilm/manage.py migrate
 
+reset:
+	@python ggfilm/manage.py flush
+
 dev:
 	@python ggfilm/manage.py runserver 0.0.0.0:8000
 
