@@ -46,7 +46,7 @@
     color: #ffffff;
 }
 
-.tabs .tab-content ._35mm_film, .tabs .tab-content ._120_film, .tabs .tab-content .sheet_film {
+.tabs .tab-content .film_35mm, .tabs .tab-content .film_120, .tabs .tab-content .film_sheet {
     border: 1px solid #cccccc;
 }
 

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block tilte %}
+{% endblock %}
+
+{% block extracss %}
+<link href="{% static 'css/searcher-select-film.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-sm-12 col-xs-12">
+            <br />
+            <div class='tabs tabs_active'>
+                <ul class='horizontal'>
+                    <li class="li-35mm enabled-li"><a href="#tab-35mm" class="show-change block_35mm enabled">35mm</a></li>
+                    <li class="li-120"><a href="#tab-120" class="show-change block_120">120</a></li>
+                    <li class="li-sheet"><a href="#tab-sheet" class="show-change block_sheet">页片</a></li>
+                </ul>
+                <div class="tab-content" id='tab-35mm'>
+                    <h4>总共有{{ films_35mm_cnt }}个可选胶片</h4>
+                    {% for film in films_35mm %}
+                    <div class="film_35mm">
+                        <a href="javascript:void(0)" class="film_link">{{ film }}</a>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="tab-content" id='tab-120'>
+                    <h4>总共有{{ films_120_cnt }}个可选胶片</h4>
+                    {% for film in films_120 %}
+                    <div class="film_120">
+                        <a href="javascript:void(0)" class="film_link">{{ film }}</a>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="tab-content" id='tab-sheet'>
+                    <h4>总共有{{ films_sheet_cnt }}个可选胶片</h4>
+                    {% for film in films_sheet %}
+                    <div class="film_sheet">
+                        <a href="javascript:void(0)" class="film_link">{{ film }}</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script_files %}
+<script src="/static/js/jquery.tabslet.min.js"></script>
+{% endblock %}
+
+{% block script %}
+$(document).ready(function () {
+    $('.tabs').tabslet();
+
+    $('.block_35mm').click(function () {
+        $('.enabled').parent().removeClass("enabled-li");
+        $('.enabled').removeClass("enabled");
+
+        $('.li-35mm').addClass("enabled-li");
+        $('.li-35mm a').addClass("enabled");
+    });
+
+    $('.block_120').click(function () {
+        $('.enabled').parent().removeClass("enabled-li");
+        $('.enabled').removeClass("enabled");
+
+        $('.li-120').addClass("enabled-li");
+        $('.li-120 a').addClass("enabled");
+    });
+
+    $('.block_sheet').click(function () {
+        $('.enabled').parent().removeClass("enabled-li");
+        $('.enabled').removeClass("enabled");
+
+        $('.li-sheet').addClass("enabled-li");
+        $('.li-sheet a').addClass("enabled");
+    });
+
+    $('.film_link').click(function () {
+        source = $('.enabled').html();
+        film = $(this).html().replace(/\+/g, '^');
+        window.location.href = "http://192.168.0.108:8000/search/developer?source=" + source + "&film=" + film;
+    });
+});
+{% endblock %}

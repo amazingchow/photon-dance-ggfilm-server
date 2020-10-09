@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block tilte %}
+{% endblock %}
+
+{% block extracss %}
+<link href="{% static 'css/searcher-select-developer.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-sm-12 col-xs-12">
+            <div class="selector">
+                <div class="nav">
+                    <h4 class="navigation">{{ nav.source }}>{{ nav.film }}>{{ nav.developer }}></h4>
+                </div>
+                <div class="selector-area">
+                    <h4>总共有{{ dilutions_cnt }}个可选稀释比例</h4>
+                    {% for dilution in dilutions %}
+                    <div class="selector-element">
+                        <a href="javascript:void(0)" class="element_link">{{ dilution }}</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script_files %}
+{% endblock %}
+
+{% block script %}
+$(document).ready(function () {
+    $('.element_link').click(function () {
+        source = $('.navigation').html().split('&\gt;')[0];
+        film = $('.navigation').html().split('&\gt;')[1].replace(/\+/g, '^');
+        developer = $('.navigation').html().split('&\gt;')[2].replace(/\+/g, '^');
+        dilution = $(this).html().replace(/\+/g, '^');
+        dilution_display = $(this).html();
+        window.location.href = "http://192.168.0.108:8000/search/asa_iso?source=" + source + "&film=" + film + "&developer=" + developer + "&dilution=" + dilution;
+    });
+});
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block tilte %}
+{% endblock %}
+
+{% block extracss %}
+<link href="{% static 'css/searcher-select-developer.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-sm-12 col-xs-12">
+            <div class="selector">
+                <div class="nav">
+                    <h4 class="navigation">{{ nav.source }}>{{ nav.film }}></h4>
+                </div>
+                <div class="selector-area">
+                    <h4>总共有{{ developers_cnt }}个可选显影液</h4>
+                    {% for developer in developers %}
+                    <div class="selector-element">
+                        <a href="javascript:void(0)" class="element_link"
+                            style="display: block; width: 100%;">{{ developer }}</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script_files %}
+{% endblock %}
+
+{% block script %}
+$(document).ready(function () {
+    $('.element_link').click(function () {
+        source = $('.navigation').html().split('&\gt;')[0];
+        film = $('.navigation').html().split('&\gt;')[1].replace(/\+/g, '^');
+        developer = $(this).html().replace(/\+/g, '^');
+        window.location.href = "http://192.168.0.108:8000/search/dilution?source=" + source + "&film=" + film + "&developer=" + developer;
+    });
+})
+{% endblock %}

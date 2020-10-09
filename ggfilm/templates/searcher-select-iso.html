@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block tilte %}
+{% endblock %}
+
+{% block extracss %}
+<link href="{% static 'css/searcher-select-developer.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-sm-12 col-xs-12">
+            <div class="selector">
+                <div class="nav">
+                    <h4 class="navigation">{{ nav.source }}>{{ nav.film }}>{{ nav.developer }}>{{ nav.dilution }}></h4>
+                </div>
+                <div class="selector-area">
+                    <h4>总共有{{ asa_iso_list_cnt }}个可选ISO感光度</h4>
+                    {% for asa_iso in asa_iso_list %}
+                    <div class="selector-element">
+                        <a href="javascript:void(0)" class="element_link">{{ asa_iso }}</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script_files %}
+{% endblock %}
+
+{% block script %}
+$(document).ready(function () {
+    $('.element_link').click(function () {
+        source = $('.navigation').html().split('&\gt;')[0];
+        film = $('.navigation').html().split('&\gt;')[1].replace(/\+/g, '^');
+        developer = $('.navigation').html().split('&\gt;')[2].replace(/\+/g, '^');
+        dilution = $('.navigation').html().split('&\gt;')[3].replace(/\+/g, '^');
+        asa_iso = $(this).html().replace(/\+/g, '^');
+        asa_iso_display = $(this).html();
+        window.location.href = "http://192.168.0.108:8000/search/result?source=" + source + "&film=" + film + "&developer=" + developer + "&dilution=" + dilution + "&asa_iso=" + asa_iso;
+    });
+});
+{% endblock %}
