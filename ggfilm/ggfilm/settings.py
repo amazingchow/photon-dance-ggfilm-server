@@ -28,6 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['.fotolei.cn', 'localhost', '127.0.0.1', '0.0.0.0', '10.152.205.55']
 
+# Admin account
+## admin / Ajax123123
+
 
 # Application definition
 

@@ -1,3 +1,79 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 
-# Create your models here.
+
+class FilmRecord(models.Model):
+    film        = models.CharField(max_length=127, db_index=True)
+    developer   = models.CharField(max_length=127)
+    dilution    = models.CharField(max_length=127)
+    asa_iso     = models.CharField(max_length=127)
+    a35mm       = models.CharField(max_length=127)
+    a120        = models.CharField(max_length=127)
+    sheet       = models.CharField(max_length=127)
+    temp        = models.CharField(max_length=127)
+    notes       = models.CharField(max_length=127)
+
+    create_timestamp = models.DateTimeField(auto_now_add=True)
+    update_timestamp = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.film
+
+    def __str__(self):
+        return self.film
+
+    class Meta:
+        verbose_name = "The Massive Dev Chart - Film Record"
+        verbose_name_plural = "The Massive Dev Chart - Film Record"
+
+
+class MassiveDevChartFilm(models.Model):
+    name = models.CharField(max_length=127)
+
+    create_timestamp = models.DateTimeField(auto_now_add=True)
+    update_timestamp = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "The Massive Dev Chart - Film"
+        verbose_name_plural = "The Massive Dev Chart - Film"
+
+
+class MassiveDevChartDeveloper(models.Model):
+    name = models.CharField(max_length=127)
+
+    create_timestamp = models.DateTimeField(auto_now_add=True)
+    update_timestamp = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "The Massive Dev Chart - Developer"
+        verbose_name_plural = "The Massive Dev Chart - Developer"
+
+
+class MassiveDevChartNote(models.Model):
+    note   = models.CharField(max_length=127)
+    remark = models.CharField(max_length=255)
+
+    create_timestamp = models.DateTimeField(auto_now_add=True)
+    update_timestamp = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.note
+
+    def __str__(self):
+        return self.note
+
+    class Meta:
+        verbose_name = "The Massive Dev Chart - Note"
+        verbose_name_plural = "The Massive Dev Chart - Note"
