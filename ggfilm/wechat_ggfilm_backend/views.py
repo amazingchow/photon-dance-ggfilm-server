@@ -134,7 +134,7 @@ def select_developer(request):
     film = esc_replace_view2db(request.GET.get("film").replace('^', '+'))
 
     developer_query_set = []
-    if source == "35mm":
+    if source == "35毫米":
         developer_query_set = models.FilmRecord.objects.filter(film=film).\
             exclude(a35mm="").values_list('developer', flat=True).distinct()
     elif source == "120":
@@ -164,7 +164,7 @@ def select_dilution(request):
     developer = esc_replace_view2db(request.GET.get("developer").replace('^', '+'))
 
     dilution_query_set = []
-    if source == "35mm":
+    if source == "35毫米":
         dilution_query_set = models.FilmRecord.objects.filter(film=film).\
             exclude(a35mm="").filter(developer=developer).\
                 values_list('dilution', flat=True).distinct()
@@ -199,7 +199,7 @@ def select_iso(request):
     dilution = esc_replace_view2db(request.GET.get("dilution").replace('^', '+'))
 
     iso_query_set = []
-    if source == "35mm":
+    if source == "35毫米":
         iso_query_set = models.FilmRecord.objects.filter(film=film).\
             exclude(a35mm="").filter(developer=developer).filter(dilution=dilution).\
                 values_list('asa_iso', flat=True).distinct()
@@ -237,7 +237,7 @@ def show_detail_info(request):
 
     result_query = None
     time = ""
-    if source == "35mm":
+    if source == "35毫米":
         result_query = models.FilmRecord.objects.filter(film=film).\
             exclude(a35mm="").filter(developer=developer).filter(dilution=dilution).filter(asa_iso=iso)[0]
         time = result_query.a35mm
