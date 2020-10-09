@@ -1,5 +1,5 @@
 dev:
-	@python ggfilm/manage.py runserver 0:8000
+	@python ggfilm/manage.py runserver
 
 release:
 	@pip freeze > requirements.txt
