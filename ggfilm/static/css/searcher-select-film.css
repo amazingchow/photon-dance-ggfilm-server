@@ -1,8 +1,14 @@
 .tabs .horizontal {
     margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0;
-    height: 40px;
+    height: 36px;
+    width: 60%;
+    background-color: #e8e8e8;
     list-style: none;
+    border: 1px solid #707070;
+    border-radius: 6px;
 }
 
 .tabs .horizontal li {
@@ -10,44 +16,74 @@
     float: left;
     min-width: 33.33%;
     text-align: center;
-    border: 1px solid #000000;
+    border: 1px solid #e8e8e8;
+    border-radius: 3px;
 }
 
 .tabs .horizontal li a {
     display: block;
     width: 100%;
-    line-height: 36px;
+    line-height: 32px;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 14px;
     font-family: "Time New Roman";
-    color: #000000;
+    color: #383838;
+}
+
+.tabs hr.custom-1 {
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.tabs hr.custom-2 {
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.tabs hr.custom-3 {
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }
 
 .tabs .horizontal .enabled-li {
-    background-color: #000000;
+    background-color: #ffffff;
 }
 
 .tabs .horizontal .enabled-li .enabled {
-    color: #ffffff;
+    color: #383838;
 }
 
 .tabs .tab-content {
-    border: 2px solid #000000;
+    border: 1px solid #e8e8e8;
 }
 
 .tabs .tab-content h4 {
-    margin: 0;
-    padding: 0;
-    line-height: 32px;
-    background-color: #000000;
+    margin: 0 auto;
+    padding: 0 auto;
+    line-height: 36px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
     text-align: center;
-    font-size: 17px;
+    font-size: 14px;
     font-family: "Time New Roman";
-    color: #ffffff;
+    color: #f8f8f8;
 }
 
 .tabs .tab-content .film_35mm, .tabs .tab-content .film_120, .tabs .tab-content .film_sheet {
-    border: 1px solid #cccccc;
+    border-bottom: 1px solid #d8d8d8;
 }
 
 .tabs .tab-content a {

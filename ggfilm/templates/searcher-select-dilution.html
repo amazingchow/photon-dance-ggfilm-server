@@ -9,15 +9,35 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid">
-    <div class="row-fluid">
+<div class="container">
+    <div class="row">
         <div class="col-sm-12 col-xs-12">
+            <div class='tabs tabs_active'>
+                <ul class='horizontal'>
+                    {% if nav.source == "35毫米" %}
+                    <li class="li-35mm enabled-li"><div class="tab enabled">35毫米</div></li>
+                    {% else %}
+                    <li class="li-35mm"><div class="tab">35毫米</div></li>
+                    {% endif %}
+                    {% if nav.source == "120" %}
+                    <li class="li-120 enabled-li"><div class="tab enabled">120</div></li>
+                    {% else %}
+                    <li class="li-120"><div class="tab">120</div></li>
+                    {% endif %}
+                    {% if nav.source == "页片" %}
+                    <li class="li-sheet enabled-li"><div class="tab enabled">页片</div></li>
+                    {% else %}
+                    <li class="li-sheet"><div class="tab">页片</div></li>
+                    {% endif %}
+                </ul>
+                <hr class="custom-1" />
+            </div>
             <div class="selector">
                 <div class="nav">
-                    <h4 class="navigation">{{ nav.source }}>{{ nav.film }}>{{ nav.developer }}></h4>
+                    <h4 class="navigation">{{ nav.source }}>{{ nav.film }}>{{ nav.developer }}</h4>
                 </div>
                 <div class="selector-area">
-                    <h4>总共有{{ dilutions_cnt }}个可选稀释比例</h4>
+                    <h4>可选稀释比例: {{ dilutions_cnt }}</h4>
                     {% for dilution in dilutions %}
                     <div class="selector-element">
                         <a href="javascript:void(0)" class="element_link">{{ dilution }}</a>
@@ -42,7 +62,7 @@ $(document).ready(function () {
         developer = $('.navigation').html().split('&\gt;')[2].replace(/\+/g, '^');
         dilution = $(this).html().replace(/\+/g, '^');
         dilution_display = $(this).html();
-        window.location.href = "http://192.168.0.108:8000/search/asa_iso?source=" + source + "&film=" + film + "&developer=" + developer + "&dilution=" + dilution;
+        window.location.href = "http://10.152.205.55:8000/search/asa_iso?source=" + source + "&film=" + film + "&developer=" + developer + "&dilution=" + dilution;
     });
 });
 {% endblock %}

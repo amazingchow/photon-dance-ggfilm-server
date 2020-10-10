@@ -9,15 +9,35 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid">
-    <div class="row-fluid">
+<div class="container">
+    <div class="row">
         <div class="col-sm-12 col-xs-12">
+            <div class='tabs tabs_active'>
+                <ul class='horizontal'>
+                    {% if nav.source == "35毫米" %}
+                    <li class="li-35mm enabled-li"><div class="tab enabled">35毫米</div></li>
+                    {% else %}
+                    <li class="li-35mm"><div class="tab">35毫米</div></li>
+                    {% endif %}
+                    {% if nav.source == "120" %}
+                    <li class="li-120 enabled-li"><div class="tab enabled">120</div></li>
+                    {% else %}
+                    <li class="li-120"><div class="tab">120</div></li>
+                    {% endif %}
+                    {% if nav.source == "页片" %}
+                    <li class="li-sheet enabled-li"><div class="tab enabled">页片</div></li>
+                    {% else %}
+                    <li class="li-sheet"><div class="tab">页片</div></li>
+                    {% endif %}
+                </ul>
+                <hr class="custom-1" />
+            </div>
             <div class="selector">
                 <div class="nav">
-                    <h4 class="navigation">{{ nav.source }}>{{ nav.film }}></h4>
+                    <h4 class="navigation">{{ nav.source }}>{{ nav.film }}</h4>
                 </div>
                 <div class="selector-area">
-                    <h4>总共有{{ developers_cnt }}个可选显影液</h4>
+                    <h4>可选显影液: {{ developers_cnt }}</h4>
                     {% for developer in developers %}
                     <div class="selector-element">
                         <a href="javascript:void(0)" class="element_link"
@@ -41,7 +61,7 @@ $(document).ready(function () {
         source = $('.navigation').html().split('&\gt;')[0];
         film = $('.navigation').html().split('&\gt;')[1].replace(/\+/g, '^');
         developer = $(this).html().replace(/\+/g, '^');
-        window.location.href = "http://192.168.0.108:8000/search/dilution?source=" + source + "&film=" + film + "&developer=" + developer;
+        window.location.href = "http://10.152.205.55:8000/search/dilution?source=" + source + "&film=" + film + "&developer=" + developer;
     });
 })
 {% endblock %}

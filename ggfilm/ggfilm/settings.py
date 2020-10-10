@@ -26,7 +26,7 @@ SECRET_KEY = 'jbnxi(z9vq6n%!xui%$v$&d_lr4o1b7yzcubh6zy4-6f*=yt=#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.fotolei.cn', 'localhost', '127.0.0.1', '0.0.0.0', '192.168.0.108']
+ALLOWED_HOSTS = ['.fotolei.cn', 'localhost', '127.0.0.1', '*']
 
 # Admin account
 ## admin / Ajax123123

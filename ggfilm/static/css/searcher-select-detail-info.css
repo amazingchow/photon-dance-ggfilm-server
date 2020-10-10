@@ -1,17 +1,67 @@
-.result-wrapper {
-    padding: 30px 20px;
+.page-table {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding: 20px;
+    width: 100%;
+    background: #f8f8f8;
+    border-radius: 6px;
+    box-shadow: 0 2px 15px 0 rgba(0,0,0,.2);
 }
 
-ul li {
-    line-height: 30px;
-    font-size: 15px;
-    font-family: "Time New Roman";
-    color: #000000;
+.page-table .page-table-header {
+    padding: 30px 0 25px 0;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    background: #628842;
+    background-image: linear-gradient(to bottom, #76a04f, #648a43);
 }
 
-.button-wrapper {
-    text-align: right;
+.page-table .page-table-header h2 {
     padding-right: 10px;
+    font-size: 30px;
+    font-weight: 700;
+    text-shadow: 0 -2px 0 rgba(0, 0, 0, .25);
+    color: #404040;
+    text-align: right;
 }
 
+.page-table .page-table-header h3 {
+    margin-top: 20px;
+    padding-right: 10px;
+    font-size: 15px;
+    font-weight: 350;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+    color: #404040;
+    text-align: right;
+}
 
+.page-table .page-table-space {
+    height: 10px;
+}
+
+.page-table .page-table-kvs {
+    margin: 15px 10px 0 10px;
+    width: 100%;
+    border-bottom: 1px solid #dddddd;
+    line-height: 30px;
+    font-size: 14px;
+    color: #888;
+}
+
+.page-table .page-table-kvs .page-table-keys {
+    padding-right: 5px;
+    float: left;
+    text-align: right;
+}
+
+.page-table .page-table-kvs .page-table-values {
+    padding-left: 5px;
+    text-align: left;
+}
+
+.page-table .page-table-btn {
+    margin-top: 25px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    text-align: right;
+}

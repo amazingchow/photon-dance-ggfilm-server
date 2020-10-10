@@ -9,29 +9,63 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="result-wrapper">
-            <ul>
-                <li>
-                    {{ time }}分钟，温度为{{ temperature }}&#8451;
-                </li>
-                <li>
-                    默认前1分钟搅动，后续每一分钟搅动10秒，如有特殊备注，以备注为准。
-                </li>
-                {% if has_note %}
-                <li>
-                    {% for note in note_list %}
-                    {{ note }}
-                    {% endfor %}
-                </li>
-                {% endif %}
-            </ul>
-        </div>
-        <div class="button-wrapper">
-            <a href="/search"><button class="btn btn-default">继续查询</button></a>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12">
+            <div class="page-table">
+                <div class="page-table-header">
+                    <h2>黑白显影数据查询</h2>
+                    <h3>FOR YOU, FOR FREE.</h3>
+                </div>
+                <div class="page-table-space"></div>
+                <div class="page-table-kvs">
+                    <div class="page-table-keys">
+                        <p><strong>胶片</strong></p>
+                        <p><strong>显影液</strong></p>
+                        <p><strong>稀释比例</strong></p>
+                        <p><strong>感光度</strong></p>
+                        <p><strong>显影时间</strong></p>
+                        <p><strong>工作温度</strong></p>
+                        {% if has_note %}
+                        {% for note in note_list %}
+                        <p><strong>操作提示</strong></p>
+                        {% endfor %}
+                        {% else %}
+                        <p><strong>操作提示</strong></p>
+                        {% endif %}
+                    </div>
+                    <div class="page-table-values">
+                        <p>{{ nav.film }}</p>
+                        <p>{{ nav.developer }}</p>
+                        <p>{{ nav.dilution }}</p>
+                        <p>{{ nav.asa_iso }}</p>
+                        <p>{{ time }}分钟</p>
+                        <p>{{ temperature }} ℃</p>
+                        {% if has_note %}
+                        {% for note in note_list %}
+                        <p>{{ note }}</p>
+                        {% endfor %}
+                        {% else %}
+                        <p>默认前1分钟搅动，后续每一分钟搅动10秒。</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="page-table-btn"><a href="/search"><button class="btn btn-success">继续查询</button></a></div>
+            </div>
         </div>
     </div>
+
+	<!-- 底部版权栏开始 -->
+	<div class="row">
+		<div class="col-sm-12 col-xs-12 column">
+			<p class="text-center">
+				© 2020 <strong>Fotolei.</strong> All Rights Reserved. Privacy Policy.
+				<br />
+				Email: info@fotolei.com&nbsp;&nbsp;&nbsp;&nbsp;Tel: <u>0523-81167008</u>
+			</p>
+		</div>
+	</div>
+	<!-- 底部版权栏结束 -->    
 </div>
 {% endblock %}
 
