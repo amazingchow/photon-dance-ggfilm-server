@@ -130,3 +130,5 @@ dmypy.json
 
 .vscode/
 ggfilm/wechat_ggfilm_backend/utils/tmp/*.json
+ggfilm/*.ini
+nginx/*.conf

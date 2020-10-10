@@ -1,0 +1,22 @@
+# uWSGI配置文件
+[uwsgi]
+
+# 执行环境
+virtualenv = ${project_path}/venv
+pythonpath = ${project_path}/venv/lib/python3.6/site-packages
+
+# 项目根目录
+chdir = ${project_path}/ggfilm/
+
+# Djnago项目配置
+module = django_wsgi
+
+# 工作进程相关配置
+master = True
+pidfile = ggfilm-server.pid
+socket = 127.0.0.1:8000
+processes = 4
+threads = 4
+max-requests = 5000
+vacuum = True
+daemonize = log/uwsgi.log

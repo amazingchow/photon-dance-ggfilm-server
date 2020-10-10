@@ -1,0 +1,21 @@
+server {
+  listen  80;
+  server_name www.fotolei.cn;
+  charset utf-8;
+
+  access_log ${project_path}/ggfilm/log/access.log;
+  error_log  ${project_path}/ggfilm/log/error.log;
+
+  location / {
+    include    uwsgi_params;
+    uwsgi_pass 127.0.0.1:8000; 
+  }
+
+  location /static {
+    alias ${project_path}/ggfilm/static/;
+  }
+
+  location /media {
+    alias ${project_path}/ggfilm/media/;
+  }
+}
