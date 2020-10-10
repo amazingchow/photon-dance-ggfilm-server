@@ -61,7 +61,7 @@ $(document).ready(function () {
         source = $('.navigation').html().split('&\gt;')[0];
         film = $('.navigation').html().split('&\gt;')[1].replace(/\+/g, '^');
         developer = $(this).html().replace(/\+/g, '^');
-        window.location.href = "http://10.152.205.55:8000/search/dilution?source=" + source + "&film=" + film + "&developer=" + developer;
+        window.location.href = "http://localhost:8000/search/dilution?source=" + source + "&film=" + film + "&developer=" + developer;
     });
 })
 {% endblock %}

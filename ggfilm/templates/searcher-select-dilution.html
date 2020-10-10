@@ -62,7 +62,7 @@ $(document).ready(function () {
         developer = $('.navigation').html().split('&\gt;')[2].replace(/\+/g, '^');
         dilution = $(this).html().replace(/\+/g, '^');
         dilution_display = $(this).html();
-        window.location.href = "http://10.152.205.55:8000/search/asa_iso?source=" + source + "&film=" + film + "&developer=" + developer + "&dilution=" + dilution;
+        window.location.href = "http://localhost:8000/search/asa_iso?source=" + source + "&film=" + film + "&developer=" + developer + "&dilution=" + dilution;
     });
 });
 {% endblock %}
