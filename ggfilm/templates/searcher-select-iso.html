@@ -63,7 +63,7 @@ $(document).ready(function () {
         dilution = $('.navigation').html().split('&\gt;')[3].replace(/\+/g, '^');
         asa_iso = $(this).html().replace(/\+/g, '^');
         asa_iso_display = $(this).html();
-        window.location.href = "http://localhost:8000/search/result?source=" + source + "&film=" + film + "&developer=" + developer + "&dilution=" + dilution + "&asa_iso=" + asa_iso;
+        window.location.href = "http://www.fotolei.cn/search/result?source=" + source + "&film=" + film + "&developer=" + developer + "&dilution=" + dilution + "&asa_iso=" + asa_iso;
     });
 });
 {% endblock %}

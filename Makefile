@@ -7,6 +7,9 @@ init-migrate:
 migrate:
 	@python ggfilm/manage.py migrate
 
+static:
+	@python ggfilm/manage.py collectstatic
+
 reset:
 	@python ggfilm/manage.py flush
 

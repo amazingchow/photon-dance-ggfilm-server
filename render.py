@@ -41,6 +41,6 @@ def render_uwsgi_custom_ini(root):
 
 
 if __name__ == "__main__":
-    root = "/home/SENSETIME/zhoujian2/Desktop/py3-ggfilm"
+    root = "/home/py3-ggfilm"
     render_nginx_custom_conf(root)
     render_uwsgi_custom_ini(root)
