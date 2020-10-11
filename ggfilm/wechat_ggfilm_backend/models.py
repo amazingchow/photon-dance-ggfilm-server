@@ -29,6 +29,25 @@ class FilmRecord(models.Model):
         verbose_name_plural = "The Massive Dev Chart - Film Record"
 
 
+class FilmRecordUpdateLocker(models.Model):
+    name = models.CharField(verbose_name="locker's name", max_length=31)
+    the_first = models.BooleanField(verbose_name="is the first time to create or not", default=False)
+    update = models.IntegerField(verbose_name="how many times we have updated the records", default=0)
+
+    create_timestamp = models.DateTimeField(auto_now_add=True)
+    update_timestamp = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return "({}: {})".format(self.name, self.update)
+
+    class Meta:
+        verbose_name = "The Massive Dev Chart - Film Record Update Locker"
+        verbose_name_plural = "The Massive Dev Chart - Film Record Update Locker"
+
+
 class MassiveDevChartFilm(models.Model):
     name = models.CharField(max_length=127)
 
