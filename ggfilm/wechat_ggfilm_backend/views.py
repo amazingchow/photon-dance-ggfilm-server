@@ -1,9 +1,13 @@
+import logging
+__Logger = logging.getLogger('wechat_ggfilm_backend')
 import re
 
 from django.http import HttpResponse
+from django.http import HttpResponseServerError
 from django.shortcuts import render
 from django.views.decorators.cache import cache_page
 
+from . import apps
 from . import models
 
 
@@ -99,34 +103,85 @@ def esc_replace_db2view(s):
     return s
 
 
-@cache_page(60 * 60 * 24)
+__mcache_films_35mm = []
+__mcache_films_120 = []
+__mcache_films_sheet = []
+
+
+# 1. 利用客户端的page cache来提升访问速度
+# 2. 利用服务端的memory cache来提升访问速度
+#   2.1 如果 FilmRecordUpdateLocker.the_first == False 并且
+#       FilmRecordUpdateLocker.create_timestamp == FilmRecordUpdateLocker.update_timestamp,
+#       那么请求直接访问内存缓存
+#   2.1 如果 服务重启了 或者 FilmRecordUpdateLocker.the_first == True 或者
+#       FilmRecordUpdateLocker.create_timestamp != FilmRecordUpdateLocker.update_timestamp,
+#       那么请求直接访问数据库, 并且同步更新内存缓存 (处理服务挂掉后内存缓存的持久化问题)
+# 3. 由于当前数据库引擎使用的是SQLite, 因此不必考虑并发访问引起的脏数据问题
+#   3.1 in SQLite, all transactions are serializable, i.e., 
+#       it behaves as if the entire database is locked around each transaction.
+#   3.2 select_for_update is the simplest way to acquire a lock on an object, 
+#       provided your database supports it. PostgreSQL, Oracle, and MySQL, at least, support it.
+# @cache_page(60 * 60 * 24)
 def select_film(request):
+    global __mcache_films_35mm
+    global __mcache_films_120
+    global __mcache_films_sheet
+    
+    l = models.FilmRecordUpdateLocker.objects.get(name="film_record_update_locker")
+    create_timestamp = l.create_timestamp.strftime("%Y-%m-%d")
+    update_timestamp = l.update_timestamp.strftime("%Y-%m-%d")
+
+    has_restarted = apps.WechatGgfilmBackendConfig.has_restarted()
+
+    if has_restarted:
+        __Logger.info("since service has restarted, to fetch films from database")
+        query_from_database()
+    elif l.the_first or (create_timestamp != update_timestamp):
+        __Logger.info("fetch films from database")
+        query_from_database()
+
+        l.the_first = False
+        l.save()
+    elif (not l.the_first) and (create_timestamp == update_timestamp):
+        __Logger.info("fetch films from memory cache")
+        # TODO: 直接取内存缓存的一系列事务操作
+    else:
+        __Logger.error("500")
+        return HttpResponseServerError()
+    
+    films_35mm_cnt = len(__mcache_films_35mm)
+    films_120_cnt = len(__mcache_films_120)
+    films_sheet_cnt = len(__mcache_films_sheet)
+
+    return render(request, "searcher-select-film.html", {
+            "films_35mm": __mcache_films_35mm,
+            "films_35mm_cnt": films_35mm_cnt,
+            "films_120": __mcache_films_120,
+            "films_120_cnt": films_120_cnt,
+            "films_sheet": __mcache_films_sheet,
+            "films_sheet_cnt": films_sheet_cnt,
+        })
+
+
+def query_from_database():
+    global __mcache_films_35mm
+    global __mcache_films_120
+    global __mcache_films_sheet
+
     films_35mm_query_set = models.FilmRecord.objects.exclude(a35mm="").\
         values_list('film', flat=True).distinct()
-    films_35mm = [esc_replace_db2view(q) for q in films_35mm_query_set]
-    films_35mm.sort()
-    films_35mm_cnt = len(films_35mm)
+    __mcache_films_35mm = [esc_replace_db2view(q) for q in films_35mm_query_set]
+    __mcache_films_35mm.sort()
 
     films_120_query_set = models.FilmRecord.objects.exclude(a120="").\
         values_list('film', flat=True).distinct()
-    films_120 = [esc_replace_db2view(q) for q in films_120_query_set]
-    films_120.sort()
-    films_120_cnt = len(films_120)
+    __mcache_films_120 = [esc_replace_db2view(q) for q in films_120_query_set]
+    __mcache_films_120.sort()
 
     films_sheet_query_set = models.FilmRecord.objects.exclude(sheet="").\
         values_list('film', flat=True).distinct()
-    films_sheet = [esc_replace_db2view(q) for q in films_sheet_query_set]
-    films_sheet.sort()
-    films_sheet_cnt = len(films_sheet)
-
-    return render(request, "searcher-select-film.html", {
-            "films_35mm": films_35mm,
-            "films_35mm_cnt": films_35mm_cnt,
-            "films_120": films_120,
-            "films_120_cnt": films_120_cnt,
-            "films_sheet": films_sheet,
-            "films_sheet_cnt": films_sheet_cnt,
-        })
+    __mcache_films_sheet = [esc_replace_db2view(q) for q in films_sheet_query_set]
+    __mcache_films_sheet.sort()
 
 
 def select_developer(request):

@@ -11,6 +11,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ggfilm.settings")
 import django
 django.setup()
 from ..models import FilmRecord
+from ..models import FilmRecordUpdateLocker
 from ..models import MassiveDevChartDeveloper
 from ..models import MassiveDevChartFilm
 from ..models import MassiveDevChartNote
@@ -106,12 +107,18 @@ def store_massive_dev_chart_records(fn):
                 r.save()
 
 
+def init_massive_dev_chart_film_record_update_locker():
+    l = FilmRecordUpdateLocker(name='film_record_update_locker')
+    l.save()
+
+
 def main():
     store_massive_dev_chart_films('wechat_ggfilm_backend/utils/tmp/films.json')
     store_massive_dev_chart_developers('wechat_ggfilm_backend/utils/tmp/developers.json')
     store_massive_dev_chart_notes('wechat_ggfilm_backend/utils/tmp/notes.json')
     for fn in tqdm.tqdm(glob.glob('wechat_ggfilm_backend/utils/tmp/record_*.json')):
         store_massive_dev_chart_records(fn)
+    init_massive_dev_chart_film_record_update_locker()
 
 
 if __name__ == '__main__':

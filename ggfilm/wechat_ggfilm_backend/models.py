@@ -31,7 +31,7 @@ class FilmRecord(models.Model):
 
 class FilmRecordUpdateLocker(models.Model):
     name = models.CharField(verbose_name="locker's name", max_length=31)
-    the_first = models.BooleanField(verbose_name="is the first time to create or not", default=False)
+    the_first = models.BooleanField(verbose_name="is the first time to create or not", default=True)
     update = models.IntegerField(verbose_name="how many times we have updated the records", default=0)
 
     create_timestamp = models.DateTimeField(auto_now_add=True)

@@ -1,0 +1,1 @@
+default_app_config = 'wechat_ggfilm_backend.apps.WechatGgfilmBackendConfig'

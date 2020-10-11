@@ -133,3 +133,58 @@ if DEBUG:
 else:
     # Production Mode
     STATIC_ROOT = os.path.join(BASE_DIR, 'static').replace('\\', '/')
+
+# Logging
+# https://docs.djangoproject.com/en/3.1/topics/logging/
+LOG_PATH = os.path.join(BASE_DIR, "log/")
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'standard': {
+            'format': '[%(asctime)-15s][%(levelname)-5s] %(message)s',
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard'
+        },
+        'django_error': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOG_PATH + 'django.log',
+            'formatter': 'standard'
+        },
+        'wechat_ggfilm_backend': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOG_PATH + 'wechat_ggfilm_backend.log',
+            'formatter': 'standard'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['django_error', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'wechat_ggfilm_backend': {
+            'handlers': ['wechat_ggfilm_backend'],
+            'level': 'INFO',
+            'propagate': True
+        },
+    },
+}
