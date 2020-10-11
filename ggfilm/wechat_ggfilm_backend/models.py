@@ -20,7 +20,9 @@ class FilmRecord(models.Model):
         return self.film
 
     def __str__(self):
-        return self.film
+        return "(film-record: \
+            (\t\nfilm: {}\t\ndeveloper: {}\t\ndilution: {}\t\niso: {}\t\n35mm: {}\t\n120: {}\t\nsheet: {}\t\ntemp: {}\t\nnotes: {}\t\n))"\
+                .format(self.film)
 
     class Meta:
         verbose_name = "The Massive Dev Chart - Film Record"
@@ -37,7 +39,7 @@ class MassiveDevChartFilm(models.Model):
         return self.name
 
     def __str__(self):
-        return self.name
+        return "(film: {})".format(self.name)
 
     class Meta:
         verbose_name = "The Massive Dev Chart - Film"
@@ -54,7 +56,7 @@ class MassiveDevChartDeveloper(models.Model):
         return self.name
 
     def __str__(self):
-        return self.name
+        return "(developer: {})".format(self.name)
 
     class Meta:
         verbose_name = "The Massive Dev Chart - Developer"
@@ -72,7 +74,7 @@ class MassiveDevChartNote(models.Model):
         return self.note
 
     def __str__(self):
-        return self.note
+        return "(note: {})".format(self.note)
 
     class Meta:
         verbose_name = "The Massive Dev Chart - Note"
