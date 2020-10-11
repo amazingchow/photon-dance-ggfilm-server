@@ -121,7 +121,7 @@ __mcache_films_sheet = []
 #       it behaves as if the entire database is locked around each transaction.
 #   3.2 select_for_update is the simplest way to acquire a lock on an object, 
 #       provided your database supports it. PostgreSQL, Oracle, and MySQL, at least, support it.
-# @cache_page(60 * 60 * 24)
+@cache_page(60 * 60 * 24)
 def select_film(request):
     global __mcache_films_35mm
     global __mcache_films_120

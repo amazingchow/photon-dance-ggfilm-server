@@ -48,6 +48,15 @@ def render_uwsgi_custom_ini(root):
     with open("{}/ggfilm/uwsgi-local.ini".format(root), "w") as fw:
         fw.write(content)
 
+    uwsgi_tencent_cloud_template = lookup.get_template("/uwsgi-tencent-cloud.ini.example")
+    values = {
+        "project_path": root,
+    }
+    content = uwsgi_tencent_cloud_template.render(**values)
+    content = str(content, encoding = "utf8")
+    with open("{}/ggfilm/uwsgi-tencent-cloud.ini".format(root), "w") as fw:
+        fw.write(content)
+
 
 if __name__ == "__main__":
     root = "/home/ubuntu/py3-ggfilm"

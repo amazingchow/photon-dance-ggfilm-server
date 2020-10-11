@@ -143,26 +143,27 @@ LOGGING = {
     'disable_existing_loggers': True,
     'formatters': {
         'standard': {
-            'format': '[%(asctime)-15s][%(levelname)-5s] %(message)s',
+            'format': '[{levelname}][{asctime}][{process:d}][{thread:d}] {message}',
+            'style': '{',
         }
     },
     'handlers': {
         'console': {
             'level': 'INFO',
             'class': 'logging.StreamHandler',
-            'formatter': 'standard'
+            'formatter': 'standard',
         },
         'django_error': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': LOG_PATH + 'django.log',
-            'formatter': 'standard'
+            'formatter': 'standard',
         },
         'wechat_ggfilm_backend': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': LOG_PATH + 'wechat_ggfilm_backend.log',
-            'formatter': 'standard'
+            'formatter': 'standard',
         },
     },
     'loggers': {
@@ -184,7 +185,7 @@ LOGGING = {
         'wechat_ggfilm_backend': {
             'handlers': ['wechat_ggfilm_backend'],
             'level': 'INFO',
-            'propagate': True
+            'propagate': True,
         },
     },
 }

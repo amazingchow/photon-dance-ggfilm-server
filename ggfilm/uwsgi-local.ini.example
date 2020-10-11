@@ -16,8 +16,8 @@ static-map=/static=${project_path}/ggfilm/static
 master = True
 pidfile = ggfilm-server.pid
 http = 127.0.0.1:8000
-processes = 4
-threads = 4
+processes = 8
+threads = 64
 max-requests = 5000
 vacuum = True
 daemonize = log/uwsgi.log
