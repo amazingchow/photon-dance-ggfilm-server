@@ -10,6 +10,8 @@ from django.views.decorators.cache import cache_page
 
 from . import apps
 from . import models
+from .utils.utils import esc_replace_db2view
+from .utils.utils import esc_replace_view2db
 
 
 @cache_page(60 * 60 * 24)
@@ -75,33 +77,6 @@ def labbox_tutorials_module135(request):
 @cache_page(60 * 60 * 24)
 def labbox_tutorials_pouringemptying(request):
     return render(request, "tutorials-pouringemptying.html")
-
-
-def esc_replace_view2db(s):
-    s = s.replace("/", "//") 
-    s = s.replace("'", "''")
-    s = s.replace('"', "''")  
-    s = s.replace("[", "/[") 
-    s = s.replace("]", "/]") 
-    s = s.replace("%", "/%") 
-    s = s.replace("&","/&")
-    s = s.replace("_", "/_") 
-    s = s.replace("(", "/(") 
-    s = s.replace(")", "/)")
-    return s
-
-
-def esc_replace_db2view(s):
-    s = s.replace("//", "/") 
-    s = s.replace("''", '"')  
-    s = s.replace("/[", "[") 
-    s = s.replace("/]", "]") 
-    s = s.replace("/%", "%") 
-    s = s.replace("/&","&")
-    s = s.replace("/_", "_") 
-    s = s.replace("/(", "(") 
-    s = s.replace("/)", ")")
-    return s
 
 
 __mcache_films_35mm = []

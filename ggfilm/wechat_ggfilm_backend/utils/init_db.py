@@ -17,25 +17,12 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ggfilm.settings")
 import django
 django.setup()
+from .utils import esc_replace_view2db
 from ..models import FilmRecord
 from ..models import FilmRecordUpdateLocker
 from ..models import MassiveDevChartDeveloper
 from ..models import MassiveDevChartFilm
 from ..models import MassiveDevChartNote
-
-
-def esc_replace(s):
-    s = s.replace("/", "//") 
-    s = s.replace("'", "''")
-    s = s.replace('"', "''")  
-    s = s.replace("[", "/[") 
-    s = s.replace("]", "/]") 
-    s = s.replace("%", "/%") 
-    s = s.replace("&","/&")
-    s = s.replace("_", "/_") 
-    s = s.replace("(", "/(") 
-    s = s.replace(")", "/)")
-    return s
 
 
 def store_massive_dev_chart_films(fn, exist=False):
@@ -45,10 +32,10 @@ def store_massive_dev_chart_films(fn, exist=False):
         for name in json.loads(fd.read()):
             try:
                 MassiveDevChartFilm.objects.using('massive_dev_chart_primary').get(
-                    name=esc_replace(name),
+                    name=esc_replace_view2db(name),
                 )
             except MassiveDevChartFilm.DoesNotExist:
-                f = MassiveDevChartFilm(name=esc_replace(name))
+                f = MassiveDevChartFilm(name=esc_replace_view2db(name))
                 f.save(using='massive_dev_chart_primary')
 
 
@@ -59,10 +46,10 @@ def store_massive_dev_chart_developers(fn, exist=False):
         for name in json.loads(fd.read()):
             try:
                 MassiveDevChartDeveloper.objects.using('massive_dev_chart_primary').get(
-                    name=esc_replace(name),
+                    name=esc_replace_view2db(name),
                 )
             except MassiveDevChartDeveloper.DoesNotExist:
-                d = MassiveDevChartDeveloper(name=esc_replace(name))
+                d = MassiveDevChartDeveloper(name=esc_replace_view2db(name))
                 d.save(using='massive_dev_chart_primary')
 
 
@@ -77,10 +64,10 @@ def store_massive_dev_chart_notes(fn, exist=False):
 
             try:
                 MassiveDevChartNote.objects.using('massive_dev_chart_primary').get(
-                    note=esc_replace(k),
+                    note=esc_replace_view2db(k),
                 )
             except MassiveDevChartNote.DoesNotExist:
-                n = MassiveDevChartNote(note=esc_replace(k), remark=esc_replace(remark))
+                n = MassiveDevChartNote(note=esc_replace_view2db(k), remark=esc_replace_view2db(remark))
                 n.save(using='massive_dev_chart_primary')
 
 
@@ -89,27 +76,27 @@ def store_massive_dev_chart_records(fn):
         for record in json.loads(fd.read()):
             try:
                 FilmRecord.objects.using('massive_dev_chart_primary').get(
-                    film=esc_replace(record['Film']),
-                    developer=esc_replace(record['Developer']),
-                    dilution=esc_replace(record['Dilution']),
-                    asa_iso=esc_replace(record['ASA/ISO']),
-                    a35mm=esc_replace(record['35mm']),
-                    a120=esc_replace(record['120']),
-                    sheet=esc_replace(record['Sheet']),
-                    temp=esc_replace(record['Temp']),
-                    notes=esc_replace(record['Notes']),
+                    film=esc_replace_view2db(record['Film']),
+                    developer=esc_replace_view2db(record['Developer']),
+                    dilution=esc_replace_view2db(record['Dilution']),
+                    asa_iso=esc_replace_view2db(record['ASA/ISO']),
+                    a35mm=esc_replace_view2db(record['35mm']),
+                    a120=esc_replace_view2db(record['120']),
+                    sheet=esc_replace_view2db(record['Sheet']),
+                    temp=esc_replace_view2db(record['Temp']),
+                    notes=esc_replace_view2db(record['Notes']),
                 )
             except FilmRecord.DoesNotExist:
                 r = FilmRecord(
-                    film=esc_replace(record['Film']),
-                    developer=esc_replace(record['Developer']),
-                    dilution=esc_replace(record['Dilution']),
-                    asa_iso=esc_replace(record['ASA/ISO']),
-                    a35mm=esc_replace(record['35mm']),
-                    a120=esc_replace(record['120']),
-                    sheet=esc_replace(record['Sheet']),
-                    temp=esc_replace(record['Temp']),
-                    notes=esc_replace(record['Notes']),
+                    film=esc_replace_view2db(record['Film']),
+                    developer=esc_replace_view2db(record['Developer']),
+                    dilution=esc_replace_view2db(record['Dilution']),
+                    asa_iso=esc_replace_view2db(record['ASA/ISO']),
+                    a35mm=esc_replace_view2db(record['35mm']),
+                    a120=esc_replace_view2db(record['120']),
+                    sheet=esc_replace_view2db(record['Sheet']),
+                    temp=esc_replace_view2db(record['Temp']),
+                    notes=esc_replace_view2db(record['Notes']),
                 )
                 r.save(using='massive_dev_chart_primary')
 
