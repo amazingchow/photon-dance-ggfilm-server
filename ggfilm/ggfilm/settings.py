@@ -82,25 +82,25 @@ WSGI_APPLICATION = 'ggfilm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'django.db'),
+        'NAME': os.path.join(BASE_DIR, 'db/django.db'),
     },
     # improve read performance, using multiple replications
     # TODO: sync from primary to replicas
     'massive_dev_chart_primary': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'massive_dev_chart_primary.db'),
+        'NAME': os.path.join(BASE_DIR, 'db/massive_dev_chart_primary.db'),
     },
     'massive_dev_chart_replica_1': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'massive_dev_chart_replica_1.db'),
+        'NAME': os.path.join(BASE_DIR, 'db/massive_dev_chart_replica_1.db'),
     },
     'massive_dev_chart_replica_2': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'massive_dev_chart_replica_2.db'),
+        'NAME': os.path.join(BASE_DIR, 'db/massive_dev_chart_replica_2.db'),
     },
     'massive_dev_chart_replica_3': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'massive_dev_chart_replica_3.db'),
+        'NAME': os.path.join(BASE_DIR, 'db/massive_dev_chart_replica_3.db'),
     },
 }
 
