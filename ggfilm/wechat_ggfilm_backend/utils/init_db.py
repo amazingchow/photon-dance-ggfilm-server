@@ -40,35 +40,35 @@ def esc_replace(s):
 
 def store_massive_dev_chart_films(fn, exist=False):
     if exist:
-        MassiveDevChartFilm.objects.all().using('massive_dev_chart').delete()
+        MassiveDevChartFilm.objects.all().using('massive_dev_chart_primary').delete()
     with open(fn, 'r') as fd:
         for name in json.loads(fd.read()):
             try:
-                MassiveDevChartFilm.objects.using('massive_dev_chart').get(
+                MassiveDevChartFilm.objects.using('massive_dev_chart_primary').get(
                     name=esc_replace(name),
                 )
             except MassiveDevChartFilm.DoesNotExist:
                 f = MassiveDevChartFilm(name=esc_replace(name))
-                f.save(using='massive_dev_chart')
+                f.save(using='massive_dev_chart_primary')
 
 
 def store_massive_dev_chart_developers(fn, exist=False):
     if exist:
-        MassiveDevChartDeveloper.objects.all().using('massive_dev_chart').delete()
+        MassiveDevChartDeveloper.objects.all().using('massive_dev_chart_primary').delete()
     with open(fn, 'r') as fd:
         for name in json.loads(fd.read()):
             try:
-                MassiveDevChartDeveloper.objects.using('massive_dev_chart').get(
+                MassiveDevChartDeveloper.objects.using('massive_dev_chart_primary').get(
                     name=esc_replace(name),
                 )
             except MassiveDevChartDeveloper.DoesNotExist:
                 d = MassiveDevChartDeveloper(name=esc_replace(name))
-                d.save(using='massive_dev_chart')
+                d.save(using='massive_dev_chart_primary')
 
 
 def store_massive_dev_chart_notes(fn, exist=False):
     if exist:
-        MassiveDevChartNote.objects.all().using('massive_dev_chart').delete()
+        MassiveDevChartNote.objects.all().using('massive_dev_chart_primary').delete()
     with open(fn, 'r') as fd:
         for k, v in json.loads(fd.read()).items():            
             remark = v
@@ -76,19 +76,19 @@ def store_massive_dev_chart_notes(fn, exist=False):
                 remark = NoteMap[k]
 
             try:
-                MassiveDevChartNote.objects.using('massive_dev_chart').get(
+                MassiveDevChartNote.objects.using('massive_dev_chart_primary').get(
                     note=esc_replace(k),
                 )
             except MassiveDevChartNote.DoesNotExist:
                 n = MassiveDevChartNote(note=esc_replace(k), remark=esc_replace(remark))
-                n.save(using='massive_dev_chart')
+                n.save(using='massive_dev_chart_primary')
 
 
 def store_massive_dev_chart_records(fn):
     with open(fn, 'r') as fd:
         for record in json.loads(fd.read()):
             try:
-                FilmRecord.objects.using('massive_dev_chart').get(
+                FilmRecord.objects.using('massive_dev_chart_primary').get(
                     film=esc_replace(record['Film']),
                     developer=esc_replace(record['Developer']),
                     dilution=esc_replace(record['Dilution']),
@@ -111,12 +111,12 @@ def store_massive_dev_chart_records(fn):
                     temp=esc_replace(record['Temp']),
                     notes=esc_replace(record['Notes']),
                 )
-                r.save(using='massive_dev_chart')
+                r.save(using='massive_dev_chart_primary')
 
 
 def init_massive_dev_chart_film_record_update_locker():
     l = FilmRecordUpdateLocker(name='film_record_update_locker')
-    l.save(using='massive_dev_chart')
+    l.save(using='massive_dev_chart_primary')
 
 
 def main():

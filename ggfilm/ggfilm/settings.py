@@ -84,12 +84,28 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'django.db'),
     },
-    'massive_dev_chart': {
+    # improve read performance, using multiple replications
+    # TODO: sync from primary to replicas
+    'massive_dev_chart_primary': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'massive_dev_chart.db'),
-    }
+        'NAME': os.path.join(BASE_DIR, 'massive_dev_chart_primary.db'),
+    },
+    'massive_dev_chart_replica_1': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'massive_dev_chart_replica_1.db'),
+    },
+    'massive_dev_chart_replica_2': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'massive_dev_chart_replica_2.db'),
+    },
+    'massive_dev_chart_replica_3': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'massive_dev_chart_replica_3.db'),
+    },
 }
 
+# https://docs.djangoproject.com/en/3.1/topics/db/multi-db/
+DATABASE_ROUTERS = ['wechat_ggfilm_backend.router.PrimaryReplicaRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
