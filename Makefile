@@ -7,11 +7,14 @@ init-migrate:
 migrate:
 	@python ggfilm/manage.py migrate
 
-static:
-	@python ggfilm/manage.py collectstatic
-
 reset:
 	@python ggfilm/manage.py flush
+
+db:
+	@python ggfilm/manage.py dbshell
+
+static:
+	@python ggfilm/manage.py collectstatic
 
 dev:
 	@python ggfilm/manage.py runserver 0.0.0.0:8000
