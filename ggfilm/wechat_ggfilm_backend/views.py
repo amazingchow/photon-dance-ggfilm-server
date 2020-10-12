@@ -1,3 +1,4 @@
+import collections
 import logging
 __Logger = logging.getLogger('wechat_ggfilm_backend')
 import re
@@ -104,8 +105,11 @@ def esc_replace_db2view(s):
 
 
 __mcache_films_35mm = []
+__mcache_films_35mm_a_to_z_display = collections.OrderedDict()
 __mcache_films_120 = []
+__mcache_films_120_a_to_z_display = collections.OrderedDict()
 __mcache_films_sheet = []
+__mcache_films_sheet_a_to_z_display = collections.OrderedDict()
 
 
 # 1. 利用客户端的page cache来提升访问速度
@@ -124,8 +128,11 @@ __mcache_films_sheet = []
 @cache_page(60 * 60 * 24)
 def select_film(request):
     global __mcache_films_35mm
+    global __mcache_films_35mm_a_to_z_display
     global __mcache_films_120
+    global __mcache_films_120_a_to_z_display
     global __mcache_films_sheet
+    global __mcache_films_sheet_a_to_z_display
     
     l = models.FilmRecordUpdateLocker.objects.get(name="film_record_update_locker")
     create_timestamp = l.create_timestamp.strftime("%Y-%m-%d")
@@ -146,7 +153,6 @@ def select_film(request):
         __Logger.info("fetch films from memory cache")
         # TODO: 直接取内存缓存的一系列事务操作
     else:
-        __Logger.error("500")
         return HttpResponseServerError()
     
     films_35mm_cnt = len(__mcache_films_35mm)
@@ -154,34 +160,49 @@ def select_film(request):
     films_sheet_cnt = len(__mcache_films_sheet)
 
     return render(request, "searcher-select-film.html", {
-            "films_35mm": __mcache_films_35mm,
+            "films_35mm": __mcache_films_35mm_a_to_z_display,
             "films_35mm_cnt": films_35mm_cnt,
-            "films_120": __mcache_films_120,
+            "films_120": __mcache_films_120_a_to_z_display,
             "films_120_cnt": films_120_cnt,
-            "films_sheet": __mcache_films_sheet,
+            "films_sheet": __mcache_films_sheet_a_to_z_display,
             "films_sheet_cnt": films_sheet_cnt,
         })
 
 
 def query_from_database():
     global __mcache_films_35mm
+    films_35mm_a_to_z_display = collections.defaultdict(list)
+    global __mcache_films_35mm_a_to_z_display
     global __mcache_films_120
+    films_120_a_to_z_display = collections.defaultdict(list)
+    global __mcache_films_120_a_to_z_display
     global __mcache_films_sheet
+    films_sheet_a_to_z_display = collections.defaultdict(list)
+    global __mcache_films_sheet_a_to_z_display
 
     films_35mm_query_set = models.FilmRecord.objects.exclude(a35mm="").\
         values_list('film', flat=True).distinct()
     __mcache_films_35mm = [esc_replace_db2view(q) for q in films_35mm_query_set]
     __mcache_films_35mm.sort()
+    for film in __mcache_films_35mm:
+        films_35mm_a_to_z_display[film[0].upper()].append(film)
+    __mcache_films_35mm_a_to_z_display = collections.OrderedDict(sorted(films_35mm_a_to_z_display.items()))
 
     films_120_query_set = models.FilmRecord.objects.exclude(a120="").\
         values_list('film', flat=True).distinct()
     __mcache_films_120 = [esc_replace_db2view(q) for q in films_120_query_set]
     __mcache_films_120.sort()
+    for film in __mcache_films_120:
+        films_120_a_to_z_display[film[0].upper()].append(film)
+    __mcache_films_120_a_to_z_display = collections.OrderedDict(sorted(films_120_a_to_z_display.items()))
 
     films_sheet_query_set = models.FilmRecord.objects.exclude(sheet="").\
         values_list('film', flat=True).distinct()
     __mcache_films_sheet = [esc_replace_db2view(q) for q in films_sheet_query_set]
     __mcache_films_sheet.sort()
+    for film in __mcache_films_120:
+        films_sheet_a_to_z_display[film[0].upper()].append(film)
+    __mcache_films_sheet_a_to_z_display = collections.OrderedDict(sorted(films_sheet_a_to_z_display.items()))
 
 
 def select_developer(request):

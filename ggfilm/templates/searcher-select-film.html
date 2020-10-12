@@ -21,26 +21,35 @@
                 <hr class="custom-1" />
                 <div class="tab-content" id='tab-35mm'>
                     <h4>可选胶片: {{ films_35mm_cnt }}</h4>
-                    {% for film in films_35mm %}
-                    <div class="film_35mm">
+                    {% for prefix, p_films in films_35mm.items %}
+                    <div class="film_35mm_prefix prefix"><p>{{ prefix }}</p></div>
+                    {% for film in p_films %}
+                    <div class="film_35mm film">
                         <a href="javascript:void(0)" class="film_link">{{ film }}</a>
                     </div>
+                    {% endfor %}
                     {% endfor %}
                 </div>
                 <div class="tab-content" id='tab-120'>
                     <h4>可选胶片: {{ films_120_cnt }}</h4>
-                    {% for film in films_120 %}
-                    <div class="film_120">
+                    {% for prefix, p_films in films_120.items %}
+                    <div class="film_120_prefix prefix"><p>{{ prefix }}</p></div>
+                    {% for film in p_films %}
+                    <div class="film_120 film">
                         <a href="javascript:void(0)" class="film_link">{{ film }}</a>
                     </div>
+                    {% endfor %}
                     {% endfor %}
                 </div>
                 <div class="tab-content" id='tab-sheet'>
                     <h4>可选胶片: {{ films_sheet_cnt }}</h4>
-                    {% for film in films_sheet %}
-                    <div class="film_sheet">
+                    {% for prefix, p_films in films_sheet.items %}
+                    <div class="film_sheet_prefix prefix"><p>{{ prefix }}</p></div>
+                    {% for film in p_films %}
+                    <div class="film_sheet film">
                         <a href="javascript:void(0)" class="film_link">{{ film }}</a>
                     </div>
+                    {% endfor %}
                     {% endfor %}
                 </div>
             </div>

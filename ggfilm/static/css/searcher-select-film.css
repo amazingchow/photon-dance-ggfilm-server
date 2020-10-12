@@ -68,6 +68,7 @@
 }
 
 .tabs .tab-content {
+    margin-bottom: 20px;
     border: 1px solid #e8e8e8;
 }
 
@@ -82,13 +83,31 @@
     color: #f8f8f8;
 }
 
-.tabs .tab-content .film_35mm, .tabs .tab-content .film_120, .tabs .tab-content .film_sheet {
+.tabs .tab-content .prefix {
     border-bottom: 1px solid #d8d8d8;
 }
 
-.tabs .tab-content a {
+.tabs .tab-content .prefix p {
     display: block;
     width: 100%;
+    margin: 0 auto;
+    padding-left: 10px;
+    line-height: 32px;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: "Time New Roman";
+    background-color: #a8a8a8;
+    color: #ffffff;
+}
+
+.tabs .tab-content .film {
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.tabs .tab-content .film a {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
     padding-left: 10px;
     line-height: 40px;
     text-decoration: none;
