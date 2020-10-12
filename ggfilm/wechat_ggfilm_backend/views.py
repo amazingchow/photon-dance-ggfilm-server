@@ -175,7 +175,7 @@ def query_from_database():
         values_list('film', flat=True).distinct()
     __mcache_films_sheet = [esc_replace_db2view(q) for q in films_sheet_query_set]
     __mcache_films_sheet.sort()
-    for film in __mcache_films_120:
+    for film in __mcache_films_sheet:
         films_sheet_a_to_z_display[film[0].upper()].append(film)
     __mcache_films_sheet_a_to_z_display = collections.OrderedDict(sorted(films_sheet_a_to_z_display.items()))
 
@@ -289,31 +289,43 @@ def show_detail_info(request):
     result_query = None
     time = ""
     if source == "35毫米":
-        result_query = models.FilmRecord.objects.filter(film=film).\
-            exclude(a35mm="").filter(developer=developer).filter(dilution=dilution).filter(asa_iso=iso)[0]
+        result_query_set = models.FilmRecord.objects.filter(film=film).\
+            exclude(a35mm="").filter(developer=developer).filter(dilution=dilution).filter(asa_iso=iso)
+        if len(result_query_set) == 0:
+            return HttpResponseServerError()
+        result_query = result_query_set[0]
         time = result_query.a35mm
     elif source == "120":
-        result_query = models.FilmRecord.objects.filter(film=film).\
-            exclude(a120="").filter(developer=developer).filter(dilution=dilution).filter(asa_iso=iso)[0]
+        result_query_set = models.FilmRecord.objects.filter(film=film).\
+            exclude(a120="").filter(developer=developer).filter(dilution=dilution).filter(asa_iso=iso)
+        if len(result_query_set) == 0:
+            return HttpResponseServerError()
+        result_query = result_query_set[0]
         time = result_query.a120
     elif source == "页片":
-        result_query = models.FilmRecord.objects.filter(film=film).\
-            exclude(sheet="").filter(developer=developer).filter(dilution=dilution).filter(asa_iso=iso)[0]
+        result_query_set = models.FilmRecord.objects.filter(film=film).\
+            exclude(sheet="").filter(developer=developer).filter(dilution=dilution).filter(asa_iso=iso)
+        if len(result_query_set) == 0:
+            return HttpResponseServerError()
+        result_query = result_query_set[0]
         time = result_query.sheet
 
     temperature = result_query.temp.split("C")[0]
 
     note_list = []
     if result_query.notes != "":
-        note_orders = esc_replace_db2view(result_query.notes)
-        note_orders = re.findall(r"\[(.*?)\]", note_orders)
+        note_orders_raw = esc_replace_db2view(result_query.notes)
+        note_orders = re.findall(r"\[(.*?)\]", note_orders_raw)
         for note_order in note_orders:
             if note_order == "46":
                 pass
             else:
-                note = models.MassiveDevChartNote.objects.\
-                    get(note=esc_replace_view2db('[{}]'.format(note_order))).remark
-                note_list.append(esc_replace_db2view(note))
+                try:
+                    note = models.MassiveDevChartNote.objects.\
+                        get(note=esc_replace_view2db('[{}]'.format(note_order))).remark
+                    note_list.append(esc_replace_db2view(note))
+                except models.MassiveDevChartNote.DoesNotExist:
+                    __Logger.error("no note_order: {}".format(note_order))
     has_note = len(note_list)
     
     return render(request, "searcher-select-detail-info.html", {
