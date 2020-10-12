@@ -20,7 +20,7 @@ dev:
 	@python ggfilm/manage.py runserver 0.0.0.0:8000
 
 clear:
-	find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
+	find . | grep -e __pycache__ -e  *.pyc -e *.pyo | xargs rm -rf
 
 release:
 	@pip freeze > requirements.txt
