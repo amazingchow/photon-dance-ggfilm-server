@@ -134,7 +134,7 @@ def select_film(request):
     global __mcache_films_sheet
     global __mcache_films_sheet_a_to_z_display
     
-    l = models.FilmRecordUpdateLocker.objects.get(name="film_record_update_locker")
+    l = models.FilmRecordUpdateLocker.objects.using('massive_dev_chart').get(name="film_record_update_locker")
     create_timestamp = l.create_timestamp.strftime("%Y-%m-%d")
     update_timestamp = l.update_timestamp.strftime("%Y-%m-%d")
 
@@ -148,7 +148,7 @@ def select_film(request):
         query_from_database()
 
         l.the_first = False
-        l.save()
+        l.save(using='massive_dev_chart')
     elif (not l.the_first) and (create_timestamp == update_timestamp):
         __Logger.info("fetch films from memory cache")
         # TODO: 直接取内存缓存的一系列事务操作
@@ -180,7 +180,7 @@ def query_from_database():
     films_sheet_a_to_z_display = collections.defaultdict(list)
     global __mcache_films_sheet_a_to_z_display
 
-    films_35mm_query_set = models.FilmRecord.objects.exclude(a35mm="").\
+    films_35mm_query_set = models.FilmRecord.objects.using('massive_dev_chart').exclude(a35mm="").\
         values_list('film', flat=True).distinct()
     __mcache_films_35mm = [esc_replace_db2view(q) for q in films_35mm_query_set]
     __mcache_films_35mm.sort()
@@ -188,7 +188,7 @@ def query_from_database():
         films_35mm_a_to_z_display[film[0].upper()].append(film)
     __mcache_films_35mm_a_to_z_display = collections.OrderedDict(sorted(films_35mm_a_to_z_display.items()))
 
-    films_120_query_set = models.FilmRecord.objects.exclude(a120="").\
+    films_120_query_set = models.FilmRecord.objects.using('massive_dev_chart').exclude(a120="").\
         values_list('film', flat=True).distinct()
     __mcache_films_120 = [esc_replace_db2view(q) for q in films_120_query_set]
     __mcache_films_120.sort()
@@ -196,7 +196,7 @@ def query_from_database():
         films_120_a_to_z_display[film[0].upper()].append(film)
     __mcache_films_120_a_to_z_display = collections.OrderedDict(sorted(films_120_a_to_z_display.items()))
 
-    films_sheet_query_set = models.FilmRecord.objects.exclude(sheet="").\
+    films_sheet_query_set = models.FilmRecord.objects.using('massive_dev_chart').exclude(sheet="").\
         values_list('film', flat=True).distinct()
     __mcache_films_sheet = [esc_replace_db2view(q) for q in films_sheet_query_set]
     __mcache_films_sheet.sort()
@@ -211,13 +211,13 @@ def select_developer(request):
 
     developer_query_set = []
     if source == "35毫米":
-        developer_query_set = models.FilmRecord.objects.filter(film=film).\
+        developer_query_set = models.FilmRecord.objects.using('massive_dev_chart').filter(film=film).\
             exclude(a35mm="").values_list('developer', flat=True).distinct()
     elif source == "120":
-        developer_query_set = models.FilmRecord.objects.filter(film=film).\
+        developer_query_set = models.FilmRecord.objects.using('massive_dev_chart').filter(film=film).\
             exclude(a120="").values_list('developer', flat=True).distinct()
     elif source == "页片":
-        developer_query_set = models.FilmRecord.objects.filter(film=film).\
+        developer_query_set = models.FilmRecord.objects.using('massive_dev_chart').filter(film=film).\
             exclude(sheet="").values_list('developer', flat=True).distinct()
     
     developers = [esc_replace_db2view(q) for q in developer_query_set]
@@ -241,15 +241,15 @@ def select_dilution(request):
 
     dilution_query_set = []
     if source == "35毫米":
-        dilution_query_set = models.FilmRecord.objects.filter(film=film).\
+        dilution_query_set = models.FilmRecord.objects.using('massive_dev_chart').filter(film=film).\
             exclude(a35mm="").filter(developer=developer).\
                 values_list('dilution', flat=True).distinct()
     elif source == "120":
-        dilution_query_set = models.FilmRecord.objects.filter(film=film).\
+        dilution_query_set = models.FilmRecord.objects.using('massive_dev_chart').filter(film=film).\
             exclude(a120="").filter(developer=developer).\
                 values_list('dilution', flat=True).distinct()
     elif source == "页片":
-        dilution_query_set = models.FilmRecord.objects.filter(film=film).\
+        dilution_query_set = models.FilmRecord.objects.using('massive_dev_chart').filter(film=film).\
             exclude(sheet="").filter(developer=developer).\
                 values_list('dilution', flat=True).distinct()
     
@@ -276,15 +276,15 @@ def select_iso(request):
 
     iso_query_set = []
     if source == "35毫米":
-        iso_query_set = models.FilmRecord.objects.filter(film=film).\
+        iso_query_set = models.FilmRecord.objects.using('massive_dev_chart').filter(film=film).\
             exclude(a35mm="").filter(developer=developer).filter(dilution=dilution).\
                 values_list('asa_iso', flat=True).distinct()
     elif source == "120":
-        iso_query_set = models.FilmRecord.objects.filter(film=film).\
+        iso_query_set = models.FilmRecord.objects.using('massive_dev_chart').filter(film=film).\
             exclude(a120="").filter(developer=developer).filter(dilution=dilution).\
                 values_list('asa_iso', flat=True).distinct()
     elif source == "页片":
-        iso_query_set = models.FilmRecord.objects.filter(film=film).\
+        iso_query_set = models.FilmRecord.objects.using('massive_dev_chart').filter(film=film).\
             exclude(sheet="").filter(developer=developer).filter(dilution=dilution).\
                 values_list('asa_iso', flat=True).distinct()
     
@@ -314,15 +314,15 @@ def show_detail_info(request):
     result_query = None
     time = ""
     if source == "35毫米":
-        result_query = models.FilmRecord.objects.filter(film=film).\
+        result_query = models.FilmRecord.objects.using('massive_dev_chart').filter(film=film).\
             exclude(a35mm="").filter(developer=developer).filter(dilution=dilution).filter(asa_iso=iso)[0]
         time = result_query.a35mm
     elif source == "120":
-        result_query = models.FilmRecord.objects.filter(film=film).\
+        result_query = models.FilmRecord.objects.using('massive_dev_chart').filter(film=film).\
             exclude(a120="").filter(developer=developer).filter(dilution=dilution).filter(asa_iso=iso)[0]
         time = result_query.a120
     elif source == "页片":
-        result_query = models.FilmRecord.objects.filter(film=film).\
+        result_query = models.FilmRecord.objects.using('massive_dev_chart').filter(film=film).\
             exclude(sheet="").filter(developer=developer).filter(dilution=dilution).filter(asa_iso=iso)[0]
         time = result_query.sheet
 
@@ -336,7 +336,8 @@ def show_detail_info(request):
             if note_order == "46":
                 pass
             else:
-                note = models.MassiveDevChartNote.objects.get(note=esc_replace_view2db('[{}]'.format(note_order))).remark
+                note = models.MassiveDevChartNote.objects.using('massive_dev_chart').\
+                    get(note=esc_replace_view2db('[{}]'.format(note_order))).remark
                 note_list.append(esc_replace_db2view(note))
     has_note = len(note_list)
     
