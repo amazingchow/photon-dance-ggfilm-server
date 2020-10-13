@@ -1,6 +1,10 @@
 # uWSGI配置文件
 [uwsgi]
 
+# 日志格式
+# https://uwsgi-docs.readthedocs.io/en/latest/LogFormat.html
+log-format = %(addr) - %(user) [%(ltime)] "%(method) %(uri) %(proto)" %(status) %(size) "%(referer)" "%(uagent)"
+
 # 执行环境
 virtualenv = ${project_path}/venv
 pythonpath = ${project_path}/venv/lib/python3.6/site-packages
