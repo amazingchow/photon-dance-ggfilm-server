@@ -11,6 +11,7 @@ MarkupSafe==1.1.1
 pytz==2020.1
 ratelimit==2.2.1
 requests==2.24.0
+selenium==3.141.0
 soupsieve==2.0.1
 sqlparse==0.4.1
 tqdm==4.50.2

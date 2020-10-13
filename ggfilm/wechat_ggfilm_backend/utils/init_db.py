@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 import glob
 import logging
-__Logger = logging.getLogger('init_db')
-__Logger.setLevel(logging.INFO)
-__Formatter = logging.Formatter("[%(asctime)-15s][%(levelname)-5s] %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
-__FileHandler = logging.FileHandler('utils/log/init_db.log', 'w')
-__FileHandler.setFormatter(__Formatter)
-__Logger.addHandler(__FileHandler)
+logging.basicConfig(
+    filename='wechat_ggfilm_backend/utils/log/init_db.log',
+    filemode='w',
+    format='[%(asctime)-15s][%(levelname)-5s] %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S',
+    level=logging.INFO,
+)
 
 import tqdm
 import ujson as json
@@ -108,16 +109,16 @@ def init_massive_dev_chart_film_record_update_locker():
 
 def main():
     store_massive_dev_chart_films('wechat_ggfilm_backend/utils/tmp/films.json')
-    __Logger.info('store massive-dev-chart films')
+    logging.info('store massive-dev-chart films')
     store_massive_dev_chart_developers('wechat_ggfilm_backend/utils/tmp/developers.json')
-    __Logger.info('store massive-dev-chart developers')
+    logging.info('store massive-dev-chart developers')
     store_massive_dev_chart_notes('wechat_ggfilm_backend/utils/tmp/notes.json')
-    __Logger.info('store massive-dev-chart notes')
+    logging.info('store massive-dev-chart notes')
     for fn in tqdm.tqdm(glob.glob('wechat_ggfilm_backend/utils/tmp/record_*.json')):
         store_massive_dev_chart_records(fn)
-    __Logger.info('store massive-dev-chart film-records')
+    logging.info('store massive-dev-chart film-records')
     init_massive_dev_chart_film_record_update_locker()
-    __Logger.info('store massive-dev-chart film-record-update-locker')
+    logging.info('store massive-dev-chart film-record-update-locker')
 
 
 if __name__ == '__main__':
