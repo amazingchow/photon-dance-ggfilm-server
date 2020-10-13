@@ -20,7 +20,10 @@
                 </ul>
                 <hr class="custom-1" />
                 <div class="tab-content" id='tab-35mm'>
-                    <h4>可选胶片: {{ films_35mm_cnt }}</h4>
+                    <div class="tab-content-top">
+                        <div class="tab-content-top-layer layer-1">35毫米</div>
+                        <div class="tab-content-top-layer layer-2">可选胶片: {{ films_35mm_cnt }}</div>
+                    </div>
                     {% for prefix, p_films in films_35mm.items %}
                     <div class="film_35mm_prefix prefix"><p>{{ prefix }}</p></div>
                     {% for film in p_films %}
@@ -31,7 +34,10 @@
                     {% endfor %}
                 </div>
                 <div class="tab-content" id='tab-120'>
-                    <h4>可选胶片: {{ films_120_cnt }}</h4>
+                    <div class="tab-content-top">
+                        <div class="tab-content-top-layer layer-1">120</div>
+                        <div class="tab-content-top-layer layer-2">可选胶片: {{ films_120_cnt }}</div>
+                    </div>
                     {% for prefix, p_films in films_120.items %}
                     <div class="film_120_prefix prefix"><p>{{ prefix }}</p></div>
                     {% for film in p_films %}
@@ -42,7 +48,10 @@
                     {% endfor %}
                 </div>
                 <div class="tab-content" id='tab-sheet'>
-                    <h4>可选胶片: {{ films_sheet_cnt }}</h4>
+                    <div class="tab-content-top">
+                        <div class="tab-content-top-layer layer-1">页片</div>
+                        <div class="tab-content-top-layer layer-2">可选胶片: {{ films_sheet_cnt }}</div>
+                    </div>
                     {% for prefix, p_films in films_sheet.items %}
                     <div class="film_sheet_prefix prefix"><p>{{ prefix }}</p></div>
                     {% for film in p_films %}
