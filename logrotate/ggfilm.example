@@ -1,0 +1,21 @@
+${project_path}/ggfilm/log/*.log {
+    weekly
+    rotate 5
+    size 100M
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 644 ubuntu ubuntu
+}
+
+${project_path}/ggfilm/wechat_ggfilm_backend/utils/log/*.log {
+    weekly
+    rotate 5
+    size 100M
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 644 ubuntu ubuntu
+}

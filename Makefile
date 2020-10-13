@@ -19,8 +19,19 @@ static:
 dev:
 	@python ggfilm/manage.py runserver 0.0.0.0:8000
 
+logrotate-test:
+	@touch ggfilm/log/log-file.log
+	@head -c 10M < /dev/urandom > ggfilm/log/log-file.log
+	@touch ggfilm/wechat_ggfilm_backend/utils/log/log-file.log
+	@head -c 10M < /dev/urandom > ggfilm/wechat_ggfilm_backend/utils/log/log-file.log
+	logrotate -vf logrotate/ggfilm
+
 clear:
 	find . | grep -e __pycache__ -e  *.pyc -e *.pyo | xargs rm -rf
 
 release:
 	@pip freeze > requirements.txt
+
+env:
+	sudo cp logrotate/ggfilm /etc/logrotate.d/
+	sudo cp nginx/ggfilm-http-server.conf /etc/nginx/conf.d/

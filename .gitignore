@@ -129,7 +129,12 @@ dmypy.json
 .pyre/
 
 .vscode/
+ggfilm/log/*.log
+ggfilm/log/*.log.*
+ggfilm/wechat_ggfilm_backend/utils/log/*.log
+ggfilm/wechat_ggfilm_backend/utils/log/*.log.*
 ggfilm/wechat_ggfilm_backend/utils/tmp/*.json
 ggfilm/*.ini
 ggfilm/*.pid
 nginx/*.conf
+logrotate/ggfilm
