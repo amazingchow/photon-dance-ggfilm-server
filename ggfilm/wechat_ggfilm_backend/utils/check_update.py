@@ -10,6 +10,8 @@ logging.basicConfig(
 
 import requests
 
+from shutil import copyfile
+
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
@@ -166,6 +168,12 @@ def main():
 
                             time.sleep(2)
                             parse_link(driver.page_source)
+
+                            # 主库数据同步到从库
+                            # TODO: 设计更优雅的同步方式
+                            copyfile('db/massive_dev_chart_primary.db', 'db/massive_dev_chart_replica_1/db')
+                            copyfile('db/massive_dev_chart_primary.db', 'db/massive_dev_chart_replica_2/db')
+                            copyfile('db/massive_dev_chart_primary.db', 'db/massive_dev_chart_replica_3/db')
                         except NoSuchElementException as e:
                             logging.error('failed to parse, err: {}'.format(e))
                     except TimeoutException as e:
