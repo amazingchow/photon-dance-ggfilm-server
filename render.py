@@ -72,8 +72,23 @@ def render_logrotate_custom_conf(root):
         fw.write(content)
 
 
+def render_cron_custom_conf(root):
+    conf_path = "{}/cron".format(root)
+    lookup = TemplateLookup(directories=[conf_path], output_encoding='utf-8', input_encoding='utf-8', default_filters=['decode.utf8'], encoding_errors='replace')
+    
+    cron_template = lookup.get_template("/ggfilm.example")
+    values = {
+        "project_path": root,
+    }
+    content = cron_template.render(**values)
+    content = str(content, encoding = "utf8")
+    with open("{}/cron/ggfilm".format(root), "w") as fw:
+        fw.write(content)
+
+
 if __name__ == "__main__":
     root = "/home/ubuntu/py3-ggfilm"
     render_nginx_custom_conf(root)
     render_uwsgi_custom_ini(root)
     render_logrotate_custom_conf(root)
+    render_cron_custom_conf(root)

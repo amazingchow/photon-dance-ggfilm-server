@@ -33,5 +33,6 @@ release:
 	@pip freeze > requirements.txt
 
 env:
+	sudo cp cron/ggfilm /etc/cron.daily/
 	sudo cp logrotate/ggfilm /etc/logrotate.d/
 	sudo cp nginx/ggfilm-http-server.conf /etc/nginx/conf.d/

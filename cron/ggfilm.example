@@ -1,0 +1,5 @@
+#!/bin/sh
+
+test -x ${project_path}/venv/bin/python || exit 0
+cd ${project_path}/ggfilm
+${project_path}/venv/bin/python -m wechat_ggfilm_backend.utils.check_update
