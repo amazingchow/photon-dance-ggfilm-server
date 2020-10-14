@@ -19,3 +19,14 @@ ${project_path}/ggfilm/wechat_ggfilm_backend/utils/log/*.log {
     notifempty
     create 644 ubuntu ubuntu
 }
+
+/var/log/django/ggfilm/*.log {
+    weekly
+    rotate 5
+    size 100M
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 644 root root
+}

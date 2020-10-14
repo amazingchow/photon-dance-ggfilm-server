@@ -3,8 +3,8 @@ server {
   server_name www.fotolei.cn;
   charset utf-8;
 
-  access_log ${project_path}/ggfilm/log/access.log;
-  error_log  ${project_path}/ggfilm/log/error.log;
+  access_log /var/log/django/ggfilm/access.log;
+  error_log  /var/log/django/ggfilm/error.log;
 
   location / {
     include    uwsgi_params;
