@@ -34,5 +34,6 @@ release:
 
 env:
 	sudo cp cron/ggfilm /etc/cron.daily/
+	sudo chmod 755 /etc/cron.daily/ggfilm
 	sudo cp logrotate/ggfilm /etc/logrotate.d/
 	sudo cp nginx/ggfilm-http-server.conf /etc/nginx/conf.d/
