@@ -24,7 +24,7 @@ logrotate-test:
 	@head -c 10M < /dev/urandom > ggfilm/log/log-file.log
 	@touch ggfilm/wechat_ggfilm_backend/utils/log/log-file.log
 	@head -c 10M < /dev/urandom > ggfilm/wechat_ggfilm_backend/utils/log/log-file.log
-	logrotate -vf logrotate/ggfilm
+	logrotate -vf ./deploy/logrotate/ggfilm
 
 clear:
 	find . | grep -e __pycache__ -e  *.pyc -e *.pyo | xargs rm -rf
@@ -33,8 +33,8 @@ release:
 	@pip freeze > requirements.txt
 
 env:
-	sudo cp cron/ggfilm /etc/cron.daily/
+	sudo cp ./deploy/cron/ggfilm /etc/cron.daily/
 	sudo chmod 755 /etc/cron.daily/ggfilm
-	sudo cp logrotate/ggfilm /etc/logrotate.d/
-	sudo cp nginx/ggfilm-http-server.conf /etc/nginx/conf.d/
+	sudo cp ./deploy/logrotate/ggfilm /etc/logrotate.d/
+	sudo cp ./deploy/nginx/ggfilm-http-server.conf /etc/nginx/conf.d/
 	sudo mkdir -p /var/log/django/ggfilm
