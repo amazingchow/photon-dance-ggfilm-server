@@ -33,6 +33,7 @@ urlpatterns = [
     path('labbox/tutorials-module120', views.labbox_tutorials_module120, name='tutorials-module120'),
     path('labbox/tutorials-module135', views.labbox_tutorials_module135, name='tutorials-module135'),
     path('labbox/tutorials-pouringemptying', views.labbox_tutorials_pouringemptying, name='tutorials-pouringemptying'),
+    path('labbox/tutorials-washing', views.labbox_tutorials_washing, name='tutorials-washing'),
 
     # 动态查询服务
     path('search', views.select_film, name='searcher-select-film'),
