@@ -79,6 +79,11 @@ def labbox_tutorials_pouringemptying(request):
     return render(request, "tutorials-pouringemptying.html")
 
 
+@cache_page(60 * 60 * 24)
+def labbox_tutorials_washing(request):
+    return render(request, "tutorials-washing.html")
+
+
 __mcache_films_35mm = []
 __mcache_films_35mm_a_to_z_display = collections.OrderedDict()
 __mcache_films_120 = []

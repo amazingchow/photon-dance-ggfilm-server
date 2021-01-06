@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block tilte %}
+lab-box水洗操作
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	<!-- 顶部导航栏开始 -->
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<nav class="navbar navbar-inverse" role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ggfilm-navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Fotolei</a>
+				</div>
+				<div class="collapse navbar-collapse" id="ggfilm-navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="http://www.fotolei.cn/labbox/petfilmlist">PET片基胶片</a></li>
+						<li class="active"><a href="http://www.fotolei.cn/labbox/labboxguide">Lab-Box视频教程</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<!-- 顶部导航栏结束 -->
+
+	<div class="page-header">
+		<h1>
+			罐内水洗 <small>操作步骤</small>
+		</h1>
+	</div>
+
+	<!-- 视频开始 -->
+	<div class="embed-responsive embed-responsive-16by9">
+		<iframe height=498 width=510 src='https://player.youku.com/embed/XNTA0NTg0ODA2OA==' frameborder=0 'allowfullscreen'></iframe>
+	</div>
+	<!-- 视频结束 -->
+
+	<br />
+	<br />
+
+	<!-- 图片轮播开始 -->
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="carousel slide" id="carousel-435836">
+				<ol class="carousel-indicators">
+					<li class="active" data-slide-to="0" data-target="#carousel-435836"></li>
+					<li data-slide-to="1" data-target="#carousel-435836"></li>
+					<li data-slide-to="2" data-target="#carousel-435836"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default.jpg' %}" />
+						<div class="carousel-caption">
+							<h4>Lab-Box 明室冲洗系统</h4>
+							<p>无需暗房/暗袋，胶卷冲洗如此简单</p>
+						</div>
+					</div>
+					<div class="item">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default1.jpg' %}" />
+						<div class="carousel-caption">
+							<h4>Lab-Box 明室冲洗系统</h4>
+							<p>无需暗房/暗袋，胶卷冲洗如此简单</p>
+						</div>
+					</div>
+					<div class="item">
+						{% load static %}
+						<img alt="300x200" src="{% static 'images/default2.jpg' %}" />
+						<div class="carousel-caption">
+							<h4>ADOX黑白冲洗系列药水</h4>
+							<p>德国原装进口，品质信赖</p>
+						</div>
+					</div>
+				</div>
+				<a class="left carousel-control" href="#carousel-435836" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+				<a class="right carousel-control" href="#carousel-435836" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+			</div>
+		</div>
+	</div>
+	<!-- 图片轮播结束 -->
+
+	<hr />
+
+	<!-- 底部版权栏开始 -->
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<p class="text-center">
+				© 2020 <strong>Fotolei.</strong> All Rights Reserved. Privacy Policy.
+				<br />
+				Email: info@fotolei.com&nbsp;&nbsp;&nbsp;&nbsp;Tel: <u>0523-81167008</u>
+			</p>
+		</div>
+	</div>
+	<!-- 底部版权栏结束 -->
+</div>
+{% endblock %}
+
+{% block script_files %}
+{% endblock %}
+
+{% block script %}
+{% endblock %}
