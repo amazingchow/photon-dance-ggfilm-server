@@ -34,6 +34,9 @@ urlpatterns = [
     path('labbox/tutorials-module135', views.labbox_tutorials_module135, name='tutorials-module135'),
     path('labbox/tutorials-pouringemptying', views.labbox_tutorials_pouringemptying, name='tutorials-pouringemptying'),
     path('labbox/tutorials-washing', views.labbox_tutorials_washing, name='tutorials-washing'),
+    path('chemical-bw', views.chemical_bw, name='chemical-bw'),
+    path('chemical-c41', views.chemical_c41, name='chemical-c41'),
+    path('chemical-e6', views.chemical_e6, name='chemical-e6'),
 
     # 动态查询服务
     path('search', views.select_film, name='searcher-select-film'),

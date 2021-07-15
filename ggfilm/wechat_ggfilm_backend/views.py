@@ -84,6 +84,21 @@ def labbox_tutorials_washing(request):
     return render(request, "tutorials-washing.html")
 
 
+@cache_page(60 * 60 * 24)
+def chemical_bw(request):
+    return render(request, "chemicals.html")
+
+
+@cache_page(60 * 60 * 24)
+def chemical_c41(request):
+    return render(request, "chemicals.html")
+
+
+@cache_page(60 * 60 * 24)
+def chemical_e6(request):
+    return render(request, "chemicals.html")
+
+
 __mcache_films_35mm = []
 __mcache_films_35mm_a_to_z_display = collections.OrderedDict()
 __mcache_films_120 = []
