@@ -87,7 +87,7 @@ def render_cron_custom_conf(root):
 
 
 if __name__ == "__main__":
-    root = "/home/SENSETIME/zhoujian2/gomodule/github.com/amazingchow/photon-dance-ggfilm-server"
+    root = "/home/ubuntu/photon-dance-ggfilm-server"
     render_nginx_custom_conf(root)
     render_uwsgi_custom_ini(root)
     render_logrotate_custom_conf(root)
